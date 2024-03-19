@@ -1,5 +1,15 @@
+/**
+ * @file E02-InterestRate.c
+ * @brief Este programa permite calcular el interes compuesto, con distintos niveles de intereses, de una base de monto inicial de $1000
+ * @author Maximiliano Juarez
+ */
+
 #include <stdio.h>
 #include <math.h>
+
+/**
+ * @brief El programa entero se encuentra en esta funcion, la cual se ocupa de la declaracion de variables, los bucles for para repetir y cambiar de tasa y el operador para calcular el interes
+ */
 
 int main()
 {
