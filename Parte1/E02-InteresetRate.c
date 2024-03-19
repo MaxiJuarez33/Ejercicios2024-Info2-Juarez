@@ -1,9 +1,3 @@
-/**
- * @file E02-InteresetRate.c
- * @brief Este programa permite calcular el interes compuesto que se generaria en un transcurso de 10 años, con distintas tasas, en base a un monto incial de $1000
- * @author Maximiliano Juarez
- */
-
 #include <stdio.h>
 #include <math.h>
 
