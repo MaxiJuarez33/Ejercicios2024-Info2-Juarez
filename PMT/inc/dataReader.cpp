@@ -3,17 +3,14 @@
 #include <iostream>
 #include <sstream>
 
-// Constructor
 readData::readData(const std::string& fileName) : fileName(fileName) {}
 
-// Destructor
 readData::~readData() {
     if (fileStream.is_open()) {
         fileStream.close();
     }
 }
 
-// Método para abrir el archivo
 void readData::openFile() {
     fileStream.open(fileName);
     if (!fileStream.is_open()) {
@@ -24,7 +21,6 @@ void readData::openFile() {
     }
 }
 
-// Método para leer el archivo
 void readData::read(std::vector<dataStruct>& data) {
     if (!fileStream.is_open()) {
         std::cout << "El archivo no esta abierto" << std::endl;
@@ -34,16 +30,16 @@ void readData::read(std::vector<dataStruct>& data) {
     std::string linea;
     while (getline(fileStream, linea)) {
         std::stringstream ss(linea);
-        dataStruct ds;
+        dataStruct dataStruct;
         std::string x, y;
         getline(ss, x, ',');
         getline(ss, y, ',');
-        ds.x = std::stod(x);
-        ds.y = std::stod(y);
+        dataStruct.x = std::stod(x);
+        dataStruct.y = std::stod(y);
 
-        data.push_back(ds);
+        data.push_back(dataStruct);
 
-        // std::cout << "X: " << ds.x << ", Y: " << ds.y << std::endl;
+        // std::cout << "X: " << dataStruct.x << ", Y: " << dataStruct.y << std::endl;
     }
 
     std::cout << "Archivo leido exitosamente" << std::endl;
