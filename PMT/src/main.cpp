@@ -4,7 +4,8 @@
 
 void simpleLinearRegression(const double* x, const double* y, size_t size, double& m, double& b) {
     if (size == 0) {
-        std::cerr << "No se ingresaron datos" << std::endl;
+        // std::cerr << "No se ingresaron datos" << std::endl;
+        std::cout << "No se ingresaron datos" << std::endl;
         return;
     }
 
