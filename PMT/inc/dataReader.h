@@ -1,5 +1,5 @@
-#ifndef READDATA_H
-#define READDATA_H 
+#ifndef DATAREADER_H
+#define DATAREADER_H 
 
 #include <string>
 #include <fstream>
