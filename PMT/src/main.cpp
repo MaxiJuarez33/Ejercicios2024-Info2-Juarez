@@ -123,10 +123,6 @@ void modelOption() {
         yValues.push_back(entry.y);
     }
 
-    // for (const auto& dataStruct : data) {
-    //     std::cout << "X: " << dataStruct.x << ", Y: " << dataStruct.y << std::endl;
-    // }
-
     simpleLinearRegression(xValues.data(), yValues.data(), data.size(), ecVars.m, ecVars.b);
 
     calculosEstadisticos calculosEstadisticos(xValues, yValues);

@@ -1,7 +1,23 @@
-#include "../inc/dataReader.h"
+/**
+ * @file dataReader.cpp
+ * @author maxi
+ * @brief Declaracion de la clase y metodos de la cabecera
+ * @version 0.1
+ * @date 2024-06-20
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
+#include "dataReader.h"
 
 #include <iostream>
-#include <sstream>
+
+ /**
+  * @brief Se crea el objeto readData
+  *
+  * @param fileName sera almacenado como variable privada de la clase
+  */
 
 readData::readData(const std::string& fileName) : fileName(fileName) {}
 
@@ -10,6 +26,11 @@ readData::~readData() {
         fileStream.close();
     }
 }
+
+/**
+ * @brief Se declara la funcion del metodo openFile. Este metodo debe abrir el archivo e indicar el resultado de la operacion
+ *
+ */
 
 void readData::openFile() {
     fileStream.open(fileName);
@@ -20,6 +41,12 @@ void readData::openFile() {
         std::cout << "Archivo abierto exitosamente: " + fileName << std::endl;
     }
 }
+
+/**
+ * @brief Se declara la funcion del metodo read. Este metodo debe leer los datos del archivo indicado, en caso de estar vacio se indicará en otra funcion dentro del main.cpp
+ *
+ * @param data se establece como una estructura vectorial (equivalente a array)
+ */
 
 void readData::read(std::vector<dataStruct>& data) {
     if (!fileStream.is_open()) {
@@ -38,8 +65,6 @@ void readData::read(std::vector<dataStruct>& data) {
         dataStruct.y = std::stod(y);
 
         data.push_back(dataStruct);
-
-        // std::cout << "X: " << dataStruct.x << ", Y: " << dataStruct.y << std::endl;
     }
 
     std::cout << "Archivo leido exitosamente" << std::endl;
