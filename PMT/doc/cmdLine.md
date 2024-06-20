@@ -2,6 +2,12 @@ hasta ahora, con una libreria tirada en inc
 
 g++ -Iinc -o PMT src/main.cpp inc/dataReader.cpp
 
+con calcEst
+
+g++ -Iinc -o PMT src/main.cpp inc/dataReader.cpp inc/calcEst.cpp
+
+########################################################################
+
 // bool logs(std::string fileName) {
 // std::ifstream inputLogs("csv/logs.csv");
 // std::string line;

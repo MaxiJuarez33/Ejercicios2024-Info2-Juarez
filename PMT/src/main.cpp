@@ -1,4 +1,5 @@
 #include "dataReader.h"
+#include "calcEst.h"
 #include <iostream>
 #include <vector>
 // #include <stdexcept>
@@ -70,7 +71,6 @@ void modelLoader() {
             std::stringstream ss(line);
             std::string temp;
 
-
             getline(ss, temp, ','); // Se descarta el nombre
             getline(ss, temp, ',');
             ecVars.m = std::stod(temp);
@@ -115,20 +115,22 @@ void modelOption() {
     std::vector<dataStruct> data;
     readData.read(data);
 
-    size_t dataSize = data.size();
-    double* xValues = new double[dataSize];
-    double* yValues = new double[dataSize];
+    std::vector<double> xValues;
+    std::vector<double> yValues;
 
-    for (size_t i = 0; i < dataSize; ++i) {
-        xValues[i] = data[i].x;
-        yValues[i] = data[i].y;
+    for (const auto& entry : data) {
+        xValues.push_back(entry.x);
+        yValues.push_back(entry.y);
     }
 
     // for (const auto& dataStruct : data) {
     //     std::cout << "X: " << dataStruct.x << ", Y: " << dataStruct.y << std::endl;
     // }
 
-    simpleLinearRegression(xValues, yValues, dataSize, ecVars.m, ecVars.b);
+    simpleLinearRegression(xValues.data(), yValues.data(), data.size(), ecVars.m, ecVars.b);
+
+    calculosEstadisticos calculosEstadisticos(xValues, yValues);
+    calculosEstadisticos.menu();
 
     std::cout << "m: " << ecVars.m << " b: " << ecVars.b << std::endl;
 }
