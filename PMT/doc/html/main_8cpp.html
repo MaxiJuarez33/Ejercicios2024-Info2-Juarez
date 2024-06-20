@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMT: Referencia del archivo main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">PMT
+   </div>
+   <div id="projectbrief">Proyecto de Medio Termino Informatica 2</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Clases</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo main.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas. Para generalizar, incluye la funcion del calculo de la regresion lineal simple, asi tambien como las opciones de guardar o cargar modelos.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="data_reader_8h_source.html">dataReader.h</a>&quot;</code><br />
+<code>#include &quot;calcEst.h&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Clases</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ec_vars.html">EcVars</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ab4a8fe91a3a6cb1deb8d555caf77c497" id="r_ab4a8fe91a3a6cb1deb8d555caf77c497"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4a8fe91a3a6cb1deb8d555caf77c497">simpleLinearRegression</a> (const double *x, const double *y, size_t size, double &amp;m, double &amp;b)</td></tr>
+<tr class="memdesc:ab4a8fe91a3a6cb1deb8d555caf77c497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcion para realizar el calculo de los componentes de la ecuacion de la recta (pendiente m y ordenada al origen b) el cual se utiliza para la regresion lineal simple, utilizando el metodo de minimos cuadrados ordinarios.  <br /></td></tr>
+<tr class="separator:ab4a8fe91a3a6cb1deb8d555caf77c497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff1b326d0f405cc87d1edfe464791f0" id="r_afff1b326d0f405cc87d1edfe464791f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afff1b326d0f405cc87d1edfe464791f0">modelSaver</a> (double &amp;m, double &amp;b)</td></tr>
+<tr class="memdesc:afff1b326d0f405cc87d1edfe464791f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de Nombre, m, b.  <br /></td></tr>
+<tr class="separator:afff1b326d0f405cc87d1edfe464791f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e3042d8314944d0fd133daa3e359c7" id="r_a15e3042d8314944d0fd133daa3e359c7"><td class="memItemLeft" align="right" valign="top"><a id="a15e3042d8314944d0fd133daa3e359c7" name="a15e3042d8314944d0fd133daa3e359c7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>modelLoader</b> ()</td></tr>
+<tr class="memdesc:a15e3042d8314944d0fd133daa3e359c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion permite cargar modelos guardados, permite no tener que calcular todos los datos de la ecuacion nuevamente, lo que permite no tener que guardar ese archivo de datos para este modelo. <br /></td></tr>
+<tr class="separator:a15e3042d8314944d0fd133daa3e359c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1599a73f0448c18da08f40095ff95789" id="r_a1599a73f0448c18da08f40095ff95789"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1599a73f0448c18da08f40095ff95789">predOption</a> (double &amp;m, double &amp;b)</td></tr>
+<tr class="memdesc:a1599a73f0448c18da08f40095ff95789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion es utilizada para realizar predicciones en base a la ecuacion y=mx + b, donde el usuario ingresa x, incluye un bucle por si el usuario desea hacer mas de una prediccion.  <br /></td></tr>
+<tr class="separator:a1599a73f0448c18da08f40095ff95789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3df1fa8d656d99f4f183af2c9984f0" id="r_aac3df1fa8d656d99f4f183af2c9984f0"><td class="memItemLeft" align="right" valign="top"><a id="aac3df1fa8d656d99f4f183af2c9984f0" name="aac3df1fa8d656d99f4f183af2c9984f0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dataExtraction</b> ()</td></tr>
+<tr class="memdesc:aac3df1fa8d656d99f4f183af2c9984f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion va complementada con la funcion <a class="el" href="#afff1b326d0f405cc87d1edfe464791f0" title="Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv util...">modelSaver()</a>, ya que esta permite hacer los calculos necesarios para guardar la pendiente y ordenada al origen partiendo de los datos para el modelo a guardar. <br /></td></tr>
+<tr class="separator:aac3df1fa8d656d99f4f183af2c9984f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a200f339be0607a7a2c17d59e159d58ee" id="r_a200f339be0607a7a2c17d59e159d58ee"><td class="memItemLeft" align="right" valign="top"><a id="a200f339be0607a7a2c17d59e159d58ee" name="a200f339be0607a7a2c17d59e159d58ee"></a>
+struct <a class="el" href="struct_ec_vars.html">EcVars</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ecVars</b></td></tr>
+<tr class="separator:a200f339be0607a7a2c17d59e159d58ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas. Para generalizar, incluye la funcion del calculo de la regresion lineal simple, asi tambien como las opciones de guardar o cargar modelos. </p>
+<dl class="section author"><dt>Autor</dt><dd>maxi </dd></dl>
+<dl class="section version"><dt>Versión</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>2024-06-20</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
+</div><h2 class="groupheader">Documentación de funciones</h2>
+<a id="afff1b326d0f405cc87d1edfe464791f0" name="afff1b326d0f405cc87d1edfe464791f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff1b326d0f405cc87d1edfe464791f0">&#9670;&#160;</a></span>modelSaver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void modelSaver </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de Nombre, m, b. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>pendiente de la ecuacion calculada en base a los datos especificos </td></tr>
+    <tr><td class="paramname">b</td><td>ordenada al origen de la ecuacion calculada en base a los datos especificos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1599a73f0448c18da08f40095ff95789" name="a1599a73f0448c18da08f40095ff95789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1599a73f0448c18da08f40095ff95789">&#9670;&#160;</a></span>predOption()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void predOption </td>
+          <td>(</td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion es utilizada para realizar predicciones en base a la ecuacion y=mx + b, donde el usuario ingresa x, incluye un bucle por si el usuario desea hacer mas de una prediccion. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>variable de la pendiente del modelo especifico sobre los que realizar el calculo </td></tr>
+    <tr><td class="paramname">b</td><td>variable de la ordenada al origen del modelo especifico sobre los que realizar el calculo </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab4a8fe91a3a6cb1deb8d555caf77c497" name="ab4a8fe91a3a6cb1deb8d555caf77c497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a8fe91a3a6cb1deb8d555caf77c497">&#9670;&#160;</a></span>simpleLinearRegression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simpleLinearRegression </td>
+          <td>(</td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>y</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcion para realizar el calculo de los componentes de la ecuacion de la recta (pendiente m y ordenada al origen b) el cual se utiliza para la regresion lineal simple, utilizando el metodo de minimos cuadrados ordinarios. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>son los valores, almacenados como vector, que se pasan como variables independientes de la tabla de datos extraida de los archivos </td></tr>
+    <tr><td class="paramname">y</td><td>son los valores, almacenados como vector, que se pasan como variables dependientes de la tabla de datos extraida de los archivos </td></tr>
+    <tr><td class="paramname">size</td><td>es el tamaño que tienen los vectores que contienen los datos (x e y) </td></tr>
+    <tr><td class="paramname">m</td><td>es la variable donde se guarda la pendiente obtenida para esos datos </td></tr>
+    <tr><td class="paramname">b</td><td>es la variable donde se guarda la ordenada al origen obtenida para esos datos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

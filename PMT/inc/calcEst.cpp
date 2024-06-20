@@ -6,8 +6,6 @@
 calculosEstadisticos::calculosEstadisticos(const std::vector<double>& x, const std::vector<double>& y)
     : x(x), y(y) {}
 
-calculosEstadisticos::~calculosEstadisticos() {}
-
 void calculosEstadisticos::menu() {
     std::string selectedVarName;
     int choice = 0;
@@ -23,13 +21,12 @@ void calculosEstadisticos::menu() {
         selectedVar = &y;
     }
     else {
-        // std::cerr << "Variable no reconocida" << std::endl;
         std::cout << "Variable no reconocida" << std::endl;
         return;
     }
 
     std::cout << "Que desea calcular sobre la variable " << selectedVarName << std::endl;
-    std::cout << "1 : Modo | 2 : Media | 3 : Mediana" << std::endl;
+    std::cout << "1 : Moda | 2 : Media | 3 : Mediana" << std::endl;
     std::cin >> choice;
 
     switch (choice) {
@@ -43,7 +40,6 @@ void calculosEstadisticos::menu() {
         mediana(*selectedVar);
         break;
     default:
-        // std::cerr << "Opción no valida" << std::endl;
         std::cout << "Opcion no valida" << std::endl;
         break;
     }
@@ -51,15 +47,23 @@ void calculosEstadisticos::menu() {
 
 void calculosEstadisticos::modo(const std::vector<double>& selectedVar) const {
     std::map<double, int> frequency;
+
     for (double val : selectedVar) {
         frequency[val]++;
     }
-    auto mode = std::max_element(frequency.begin(), frequency.end(),
-        [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
-            return a.second < b.second;
-        });
-    std::cout << "La moda es: " << mode->first << " con frecuencia de " << mode->second << std::endl;
+
+    int maxFrequency = 0;
+    double valorModa = 0.0;
+    for (const auto& pair : frequency) {  // BUSCAR ALTERNATIVA PARA NIVEL NOVATO
+        if (pair.second > maxFrequency) {
+            maxFrequency = pair.second;
+            valorModa = pair.first;
+        }
+    }
+
+    std::cout << "La moda es: " << valorModa << " con frecuencia de " << maxFrequency << std::endl;
 }
+
 
 void calculosEstadisticos::promedio(const std::vector<double>& selectedVar) const {
     double sum = std::accumulate(selectedVar.begin(), selectedVar.end(), 0.0);

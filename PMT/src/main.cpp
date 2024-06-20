@@ -1,14 +1,37 @@
+/**
+ * @file main.cpp
+ * @author maxi
+ * @brief este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas.
+ * Para generalizar, incluye la funcion del calculo de la regresion lineal simple, asi tambien como las opciones de guardar o cargar modelos.
+ * @version 0.1
+ * @date 2024-06-20
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #include "dataReader.h"
 #include "calcEst.h"
 #include <iostream>
 #include <vector>
-// #include <stdexcept>
-// #include <fstream>
+ // #include <stdexcept>
+ // #include <fstream>
 
 struct EcVars {
     double m;
     double b;
 } ecVars;
+
+/**
+ * @brief Funcion para realizar el calculo de los componentes de la ecuacion de la recta (pendiente m y ordenada al origen b) el cual se utiliza para la regresion lineal simple,
+ * utilizando el metodo de minimos cuadrados ordinarios.
+ *
+ * @param x son los valores, almacenados como vector, que se pasan como variables independientes de la tabla de datos extraida de los archivos
+ * @param y son los valores, almacenados como vector, que se pasan como variables dependientes de la tabla de datos extraida de los archivos
+ * @param size es el tamaño que tienen los vectores que contienen los datos (x e y)
+ * @param m es la variable donde se guarda la pendiente obtenida para esos datos
+ * @param b es la variable donde se guarda la ordenada al origen obtenida para esos datos
+ */
 
 void simpleLinearRegression(const double* x, const double* y, size_t size, double& m, double& b) {
     if (size == 0) {
@@ -33,7 +56,15 @@ void simpleLinearRegression(const double* x, const double* y, size_t size, doubl
     b = meanY - m * meanX;
 }
 
-std::string modelSaver(double& m, double& b) {
+/**
+ * @brief Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de
+ * Nombre, m, b.
+ *
+ * @param m pendiente de la ecuacion calculada en base a los datos especificos
+ * @param b ordenada al origen de la ecuacion calculada en base a los datos especificos
+ */
+
+void modelSaver(double& m, double& b) {
     std::string modelName;
     std::cout << "Ingrese el nombre para guardar su modelo: " << std::endl;
     std::cin >> modelName;
@@ -52,9 +83,12 @@ std::string modelSaver(double& m, double& b) {
     std::cout << "Su modelo " << modelName << " se guardo correctamente" << std::endl;
 
     modelSaver.close();
-
-    return modelName;
 }
+
+/**
+ * @brief Esta funcion permite cargar modelos guardados, permite no tener que calcular todos los datos de la ecuacion nuevamente, lo que permite no tener que guardar ese archivo de datos para este modelo
+ *
+ */
 
 void modelLoader() {
     std::ifstream modelLoader("csv/models.csv");
@@ -81,9 +115,18 @@ void modelLoader() {
             break;
         }
     }
+
+    modelLoader.close();
 }
 
-void predOption(double& m, double& b) {
+/**
+ * @brief Esta funcion es utilizada para realizar predicciones en base a la ecuacion y=mx + b, donde el usuario ingresa x, incluye un bucle por si el usuario desea hacer mas de una prediccion
+ *
+ * @param m variable de la pendiente del modelo especifico sobre los que realizar el calculo
+ * @param b variable de la ordenada al origen del modelo especifico sobre los que realizar el calculo
+ */
+
+void predOption(double& m, double& b) { // Posible llamado incorrecto
     char option;
     char predRepe = 's';
     std::cout << "Desea realizar una prediccion? (s/n)" << std::endl;
@@ -102,7 +145,12 @@ void predOption(double& m, double& b) {
     }
 }
 
-void modelOption() {
+/**
+ * @brief Esta funcion va complementada con la funcion modelSaver(), ya que esta permite hacer los calculos necesarios para guardar la pendiente y ordenada al origen partiendo de los datos para el modelo a guardar
+ *
+ */
+
+void dataExtraction() { // Posible llamado innecesario en main
     std::string fileName;
     std::cout << "Ingrese el nombre del archivo con datos (incluya el .csv)" << std::endl;
     std::cin >> fileName;
@@ -125,11 +173,13 @@ void modelOption() {
 
     simpleLinearRegression(xValues.data(), yValues.data(), data.size(), ecVars.m, ecVars.b);
 
-    calculosEstadisticos calculosEstadisticos(xValues, yValues);
-    calculosEstadisticos.menu();
+    // calculosEstadisticos calculosEstadisticos(xValues, yValues);
+    // calculosEstadisticos.menu();
 
-    std::cout << "m: " << ecVars.m << " b: " << ecVars.b << std::endl;
+    // std::cout << "m: " << ecVars.m << " b: " << ecVars.b << std::endl;
 }
+
+// Posible falta de otra funcion para administrar las opciones fuera de los modelos (estadistica y prediccion) para no tener todo en main
 
 int main() {
     int choice = 0;
@@ -139,10 +189,10 @@ int main() {
 
     if (choice == 1) {
         modelLoader();
-        predOption(ecVars.m, ecVars.b);
+        predOption(ecVars.m, ecVars.b); // Probablemente no vaya aca
     }
     else if (choice == 2) {
-        modelOption();
+        dataExtraction(); // No deberia ir aca
         modelSaver(ecVars.m, ecVars.b);
     }
     else {
@@ -159,3 +209,6 @@ int main() {
 
     return 0;
 }
+
+
+// REVISAR EL FLUJO DE LAS FUNCIONES MARCADAS CON //
