@@ -1,8 +1,8 @@
 /**
  * @file main.cpp
- * @author maxi
- * @brief este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas.
- * Para generalizar, incluye la funcion del calculo de la regresion lineal simple, asi tambien como las opciones de guardar o cargar modelos.
+ * @author Juarez
+ * @brief este archivo contiene todo el desarrollo del programa final, incluyendo las cabeceras hechas.
+ * Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos y realizar predicciones
  * @version 0.1
  * @date 2024-06-20
  *
@@ -12,15 +12,14 @@
 
 #include "dataReader.h"
 #include "calcEst.h"
-#include <iostream>
-#include <vector>
- // #include <stdexcept>
- // #include <fstream>
 
 struct EcVars {
     double m;
     double b;
 } ecVars;
+
+std::vector<double> xValues;
+std::vector<double> yValues;
 
 /**
  * @brief Funcion para realizar el calculo de los componentes de la ecuacion de la recta (pendiente m y ordenada al origen b) el cual se utiliza para la regresion lineal simple,
@@ -29,11 +28,9 @@ struct EcVars {
  * @param x son los valores, almacenados como vector, que se pasan como variables independientes de la tabla de datos extraida de los archivos
  * @param y son los valores, almacenados como vector, que se pasan como variables dependientes de la tabla de datos extraida de los archivos
  * @param size es el tamaño que tienen los vectores que contienen los datos (x e y)
- * @param m es la variable donde se guarda la pendiente obtenida para esos datos
- * @param b es la variable donde se guarda la ordenada al origen obtenida para esos datos
  */
 
-void simpleLinearRegression(const double* x, const double* y, size_t size, double& m, double& b) {
+void simpleLinearRegression(const double* x, const double* y, size_t size) {
     if (size == 0) {
         // std::cerr << "No se ingresaron datos" << std::endl;
         std::cout << "No se ingresaron datos" << std::endl;
@@ -52,33 +49,29 @@ void simpleLinearRegression(const double* x, const double* y, size_t size, doubl
     double meanX = sumX / size;
     double meanY = sumY / size;
 
-    m = (sumXY - size * meanX * meanY) / (sumX2 - size * meanX * meanX);
-    b = meanY - m * meanX;
+    ecVars.m = (sumXY - size * meanX * meanY) / (sumX2 - size * meanX * meanX);
+    ecVars.b = meanY - ecVars.m * meanX;
 }
 
 /**
  * @brief Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de
  * Nombre, m, b.
  *
- * @param m pendiente de la ecuacion calculada en base a los datos especificos
- * @param b ordenada al origen de la ecuacion calculada en base a los datos especificos
  */
 
-void modelSaver(double& m, double& b) {
+void modelSaver() {
     std::string modelName;
-    std::cout << "Ingrese el nombre para guardar su modelo: " << std::endl;
+    std::cout << "Ingrese el nombre para guardar su modelo (sin espacios): " << std::endl;
     std::cin >> modelName;
 
     std::ofstream modelSaver("csv/models.csv", std::ios_base::app);
 
     if (!modelSaver.is_open()) {
         std::cout << "Error al abrir el archivo models.csv" << std::endl;
-        // throw std::invalid_argument("Error al abrir el archivo models.csv"); // HACER TRY CATCH
     }
-    // std::cout << "models.csv abierto exitosamente" << std::endl;
 
     modelSaver.seekp(0, std::ios_base::end);
-    modelSaver << modelName << "," << m << "," << b << std::endl;
+    modelSaver << modelName << "," << ecVars.m << "," << ecVars.b << std::endl;
 
     std::cout << "Su modelo " << modelName << " se guardo correctamente" << std::endl;
 
@@ -94,55 +87,67 @@ void modelLoader() {
     std::ifstream modelLoader("csv/models.csv");
     std::string line;
     std::string modelName;
+    bool found = false;
 
     std::cout << "\nIngrese el nombre del modelo que desea cargar: " << std::endl;
     std::cin >> modelName;
 
-    while (getline(modelLoader, line)) {
-        if (line.find(modelName) != std::string::npos) {
-            // std::cout << "Linea encontrada: " << line << std::endl;
+    while (true) {
+        while (getline(modelLoader, line)) {
+            if (line.find(modelName) != std::string::npos) {
+                std::stringstream ss(line);
+                std::string temp;
 
-            std::stringstream ss(line);
-            std::string temp;
+                getline(ss, temp, ','); // Se descarta el nombre
+                getline(ss, temp, ',');
+                ecVars.m = std::stod(temp);
+                getline(ss, temp, ',');
+                ecVars.b = std::stod(temp);
 
-            getline(ss, temp, ','); // Se descarta el nombre
-            getline(ss, temp, ',');
-            ecVars.m = std::stod(temp);
-            getline(ss, temp, ',');
-            ecVars.b = std::stod(temp);
+                found = true;
+                break;
+            }
+        }
 
-            // std::cout << "m: " << ecVars.m << ", b: " << ecVars.b << std::endl;
+        if (found) {
+            std::cout << "Modelo cargado exitosamente" << std::endl;
             break;
+        }
+        else {
+            std::cout << "Modelo no encontrado\nIngrese el nombre nuevamente (o ingrese 'salir' para abortar): " << std::endl;
+            std::cin >> modelName;
+            if (modelName == "salir") {
+                break;
+            }
+
+            modelLoader.clear();
+            modelLoader.seekg(0, std::ios::beg);
         }
     }
 
     modelLoader.close();
 }
 
+
 /**
  * @brief Esta funcion es utilizada para realizar predicciones en base a la ecuacion y=mx + b, donde el usuario ingresa x, incluye un bucle por si el usuario desea hacer mas de una prediccion
  *
- * @param m variable de la pendiente del modelo especifico sobre los que realizar el calculo
- * @param b variable de la ordenada al origen del modelo especifico sobre los que realizar el calculo
  */
 
-void predOption(double& m, double& b) { // Posible llamado incorrecto
-    char option;
+void predOption() {
     char predRepe = 's';
-    std::cout << "Desea realizar una prediccion? (s/n)" << std::endl;
-    std::cin >> option;
 
-    if (option == 's') {
-        while (predRepe == 's') {
-            double predValue = 0;
-            std::cout << "Ingrese un valor para predecir" << std::endl;
-            std::cin >> predValue;
-            double yPred = m * predValue + b;
-            std::cout << "El valor predicho para " << predValue << " es " << yPred << std::endl;
-            std::cout << "\nDesea realizar otra prediccion? (s/n)" << std::endl;
-            std::cin >> predRepe;
-        }
+    while (predRepe == 's') {
+        double predValue = 0;
+        std::cout << "Ingrese un valor para predecir" << std::endl;
+        std::cin >> predValue;
+        double yPred = ecVars.m * predValue + ecVars.b;
+        std::cout << "El valor predicho para " << predValue << " es " << yPred << std::endl;
+        std::cout << "\nDesea realizar otra prediccion? (s/n)" << std::endl;
+        std::cin >> predRepe;
     }
+
+    return;
 }
 
 /**
@@ -150,7 +155,7 @@ void predOption(double& m, double& b) { // Posible llamado incorrecto
  *
  */
 
-void dataExtraction() { // Posible llamado innecesario en main
+void dataExtraction() {
     std::string fileName;
     std::cout << "Ingrese el nombre del archivo con datos (incluya el .csv)" << std::endl;
     std::cin >> fileName;
@@ -163,37 +168,68 @@ void dataExtraction() { // Posible llamado innecesario en main
     std::vector<dataStruct> data;
     readData.read(data);
 
-    std::vector<double> xValues;
-    std::vector<double> yValues;
-
     for (const auto& entry : data) {
         xValues.push_back(entry.x);
         yValues.push_back(entry.y);
     }
 
-    simpleLinearRegression(xValues.data(), yValues.data(), data.size(), ecVars.m, ecVars.b);
+    simpleLinearRegression(xValues.data(), yValues.data(), data.size());
 
-    // calculosEstadisticos calculosEstadisticos(xValues, yValues);
-    // calculosEstadisticos.menu();
+    std::string option;
 
-    // std::cout << "m: " << ecVars.m << " b: " << ecVars.b << std::endl;
+    std::cout << "Desea realizar algun calculo estadistico sobre estos datos? (s/n)" << std::endl;
+    std::cin >> option;
+
+    while (true) {
+        if (option == "s") {
+            calculosEstadisticos calculosEstadisticos(xValues, yValues);
+            calculosEstadisticos.menu();
+            break;
+        }
+        else if (option == "n") {
+            return;
+            break;
+        }
+        else {
+            std::cout << "Opcion inexistente, intente nuevamente o ingrese 'salir'" << std::endl;
+            std::cin >> option;
+            if (option == "salir") {
+                break;
+            }
+        }
+    }
 }
 
-// Posible falta de otra funcion para administrar las opciones fuera de los modelos (estadistica y prediccion) para no tener todo en main
+/**
+ * @brief La funcion main contiene el procesamiento de todo el programa, genera preguntas para el usuario y gestiona las decisiones redirigiendo a las funciones correspondientes
+ *
+ * @return int retorna 0 para que finalice el programa
+ */
 
 int main() {
     int choice = 0;
 
-    std::cout << "Para cargar un modelo ingrese 1 | Para crear un nuevo modelo ingrese 2" << std::endl;
+    std::cout << "Para cargar un modelo ingrese 1 | Para operar con los datos o crear un modelo ingrese 2" << std::endl;
     std::cin >> choice;
 
     if (choice == 1) {
         modelLoader();
-        predOption(ecVars.m, ecVars.b); // Probablemente no vaya aca
+
+        char option;
+        std::cout << "Desea realizar un calculo de prediccion? (s/n)" << std::endl;
+        std::cin >> option;
+        if (option == 's') {
+            predOption();
+        }
     }
     else if (choice == 2) {
-        dataExtraction(); // No deberia ir aca
-        modelSaver(ecVars.m, ecVars.b);
+        char option;
+        dataExtraction();
+        std::cout << "Desea guardar el modelo? (s/n)" << std::endl;
+        std::cin >> option;
+        if (option == 's') {
+            modelSaver();
+        }
     }
     else {
         while (true) {
@@ -209,6 +245,3 @@ int main() {
 
     return 0;
 }
-
-
-// REVISAR EL FLUJO DE LAS FUNCIONES MARCADAS CON //

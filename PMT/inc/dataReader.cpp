@@ -1,6 +1,6 @@
 /**
  * @file dataReader.cpp
- * @author maxi
+ * @author Juarez
  * @brief Declaracion de la clase y metodos de la cabecera
  * @version 0.1
  * @date 2024-06-20

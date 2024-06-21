@@ -1,6 +1,6 @@
 /**
  * @file dataReader.h
- * @author maxi
+ * @author Juarez
  * @brief Creacion de la cabecera encargada de abrir y leer archivos
  * @version 0.1
  * @date 2024-06-20

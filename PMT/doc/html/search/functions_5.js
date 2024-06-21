@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['simplelinearregression_0',['simpleLinearRegression',['../main_8cpp.html#ab4a8fe91a3a6cb1deb8d555caf77c497',1,'main.cpp']]]
+  ['read_0',['read',['../classread_data.html#a943c2eec947ac11d02d1b817918142a5',1,'readData']]],
+  ['readdata_1',['readData',['../classread_data.html#acf99fa8911c851760b3b0a2e238204fc',1,'readData']]]
 ];
