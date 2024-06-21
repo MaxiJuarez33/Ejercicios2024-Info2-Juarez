@@ -84,7 +84,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas. Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos y realizar predicciones  
+<p>este archivo contiene todo el desarrollo del programa final, incluyendo las cabeceras hechas. Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos, realizar predicciones y exportar csv para graficar  
 <a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="data_reader_8h_source.html">dataReader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="calc_est_8h_source.html">calcEst.h</a>&quot;</code><br />
@@ -99,6 +99,10 @@ Funciones</h2></td></tr>
 <tr class="memitem:a9f2b34cce764c008fc35bdce4ef2d89e" id="r_a9f2b34cce764c008fc35bdce4ef2d89e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f2b34cce764c008fc35bdce4ef2d89e">simpleLinearRegression</a> (const double *x, const double *y, size_t size)</td></tr>
 <tr class="memdesc:a9f2b34cce764c008fc35bdce4ef2d89e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcion para realizar el calculo de los componentes de la ecuacion de la recta (pendiente m y ordenada al origen b) el cual se utiliza para la regresion lineal simple, utilizando el metodo de minimos cuadrados ordinarios.  <br /></td></tr>
 <tr class="separator:a9f2b34cce764c008fc35bdce4ef2d89e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7385deb2de788f6c461ea34ffb76e3b7" id="r_a7385deb2de788f6c461ea34ffb76e3b7"><td class="memItemLeft" align="right" valign="top"><a id="a7385deb2de788f6c461ea34ffb76e3b7" name="a7385deb2de788f6c461ea34ffb76e3b7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>convertToCsv</b> ()</td></tr>
+<tr class="memdesc:a7385deb2de788f6c461ea34ffb76e3b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion permite agrupar todos los datos en un archivo csv que puede ser utilizado, en casi cualquier software que permita csv, para graficar la recta y sus puntos. <br /></td></tr>
+<tr class="separator:a7385deb2de788f6c461ea34ffb76e3b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0d62abadf1af443c335e0fdb9a4ef95" id="r_ae0d62abadf1af443c335e0fdb9a4ef95"><td class="memItemLeft" align="right" valign="top"><a id="ae0d62abadf1af443c335e0fdb9a4ef95" name="ae0d62abadf1af443c335e0fdb9a4ef95"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>modelSaver</b> ()</td></tr>
 <tr class="memdesc:ae0d62abadf1af443c335e0fdb9a4ef95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de Nombre, m, b. <br /></td></tr>
@@ -132,7 +136,7 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="separator:a0d7d2e4f29b9b97e123d8f23ddee072b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>este archivo contiene todo el desarrollo del programa total, incluyendo las cabeceras hechas. Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos y realizar predicciones </p>
+<div class="textblock"><p>este archivo contiene todo el desarrollo del programa final, incluyendo las cabeceras hechas. Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos, realizar predicciones y exportar csv para graficar </p>
 <dl class="section author"><dt>Autor</dt><dd>Juarez </dd></dl>
 <dl class="section version"><dt>Versión</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Fecha</dt><dd>2024-06-20</dd></dl>

@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Juarez
  * @brief este archivo contiene todo el desarrollo del programa final, incluyendo las cabeceras hechas.
- * Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos y realizar predicciones
+ * Incluye la funcion del calculo de la regresion lineal simple, guardar y cargar modelos, extraer datos, realizar predicciones y exportar csv para graficar
  * @version 0.1
  * @date 2024-06-20
  *
@@ -32,7 +32,6 @@ std::vector<double> yValues;
 
 void simpleLinearRegression(const double* x, const double* y, size_t size) {
     if (size == 0) {
-        // std::cerr << "No se ingresaron datos" << std::endl;
         std::cout << "No se ingresaron datos" << std::endl;
         return;
     }
@@ -52,6 +51,55 @@ void simpleLinearRegression(const double* x, const double* y, size_t size) {
     ecVars.m = (sumXY - size * meanX * meanY) / (sumX2 - size * meanX * meanX);
     ecVars.b = meanY - ecVars.m * meanX;
 }
+
+/**
+ * @brief Esta funcion permite agrupar todos los datos en un archivo csv que puede ser utilizado, en casi cualquier software que permita csv, para graficar la recta y sus puntos
+ *
+ */
+
+void convertToCsv() {
+    std::string option;
+
+    std::cout << "Desea exportar la recta como archivo .csv para visualizarla en un software de graficas? (s/n)" << std::endl;
+    std::cin >> option;
+
+    while (true) {
+        if (option == "s") {
+            std::ofstream convertToCsv("csv/rectaRegresionLineal.csv");
+
+            if (!convertToCsv.is_open()) {
+                std::cout << "Error al abrir el archivo rectaRegresionLineal.csv" << std::endl;
+                return;
+            }
+
+            convertToCsv << "X;Y" << std::endl;
+
+            for (size_t i = 0; i < xValues.size(); ++i) {
+                convertToCsv << xValues[i] << ";" << yValues[i] << std::endl;
+            }
+
+            convertToCsv << "Pendiente;" << ecVars.m << std::endl;
+            convertToCsv << "Ordenada al origen;" << ecVars.b << std::endl;
+
+            std::cout << "Exportacion completada!" << std::endl;
+
+            break;
+        }
+        else if (option == "n") {
+            return;
+            break;
+        }
+        else {
+            std::cout << "Opcion inexistente, intente nuevamente o ingrese 'salir'" << std::endl;
+            std::cin >> option;
+            if (option == "salir") {
+                break;
+            }
+        }
+    }
+
+}
+
 
 /**
  * @brief Esta funcion es utilizada para guardar los modelos con ciertos datos, se guardan en archivos csv utilizando el formato de
@@ -230,6 +278,7 @@ int main() {
         if (option == 's') {
             modelSaver();
         }
+        convertToCsv();
     }
     else {
         while (true) {
