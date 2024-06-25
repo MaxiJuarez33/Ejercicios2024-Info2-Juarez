@@ -112,10 +112,12 @@ void calculosEstadisticos::modo(const std::vector<double>& selectedVar) {
 
 void calculosEstadisticos::promedio(const std::vector<double>& selectedVar) {
     double suma = 0.0;
+
     for (double valor : selectedVar) {
         suma += valor;
     }
     double media = suma / selectedVar.size();
+
     std::cout << "El promedio es: " << media << std::endl;
 }
 
@@ -127,14 +129,35 @@ void calculosEstadisticos::promedio(const std::vector<double>& selectedVar) {
 
 void calculosEstadisticos::mediana(const std::vector<double>& selectedVar) {
     std::vector<double> sortedVar = selectedVar;
-    std::sort(sortedVar.begin(), sortedVar.end());
+
+    // DEJO ESTE METODO COMENTADO PORQUE ENCONTRE EL SORT Y CONSIDERO QUE ES MEJOR PARA LA OPTIMIZACION QUE UN BUBBLE SORT
+    // int n = sortedVar.size();
+    // bool flag;
+
+    // for (int i = 0; i < n - 1; ++i) {
+    //     flag = false;
+    //     for (int j = 0; j < n - i - 1; ++j) {
+    //         if (sortedVar[j] > sortedVar[j + 1]) {
+    //             double temp = sortedVar[j];
+    //             sortedVar[j] = sortedVar[j + 1];
+    //             sortedVar[j + 1] = temp;
+    //             flag = true;
+    //         }
+    //     }
+    //     if (!flag) break;
+    // }
+
+    std::sort(sortedVar.begin(), sortedVar.end()); // Optimizado
+
     double mediana;
     size_t size = sortedVar.size();
+
     if (size % 2 == 0) {
         mediana = (sortedVar[size / 2 - 1] + sortedVar[size / 2]) / 2;
     }
     else {
         mediana = sortedVar[size / 2];
     }
+
     std::cout << "La mediana es: " << mediana << std::endl;
 }
