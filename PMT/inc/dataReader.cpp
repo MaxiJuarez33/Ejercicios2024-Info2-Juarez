@@ -66,6 +66,4 @@ void readData::read(std::vector<dataStruct>& data) {
 
         data.push_back(dataStruct);
     }
-
-    // std::cout << "Archivo leido exitosamente" << std::endl;
 }
